@@ -52,23 +52,24 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
     }
 
-    public Boolean updateuserdata(String name, String usn, String password) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("name", name);
-        contentValues.put("usn", usn);
-        contentValues.put("password", password);
-        Cursor cursor = db.rawQuery("Select * from users where usn = ?", new String[]{usn});
-        if (cursor.getCount() > 0) {
-            long result = db.update("users", contentValues, "usn=?", new String[]{usn});
-            if (result == -1) {
+    public Boolean updateuserdata(String USN,String password)
+    {
+        SQLiteDatabase DB=this.getWritableDatabase();
+        ContentValues contentValues=new ContentValues();
+        contentValues.put("name",USN);
+        contentValues.put("password",password);
+        Cursor cursor= DB.rawQuery("select * from users where name=?",new String[]{USN});
+        if(cursor.getCount()>0)
+        {
+            long result=DB.update("users",contentValues,"name=?",new String[]{USN});
+            if(result==-1)
                 return false;
-            } else {
+            else
                 return true;
-            }
-        } else {
+        }
+        else
             return false;
-        }}
+    }
 
 
     public Boolean deletedata (String usn)

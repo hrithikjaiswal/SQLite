@@ -51,11 +51,10 @@ public class operation extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nameTXT = name.getText().toString();
                 String usnTXT = uni.getText().toString();
                 String pasTXT = pas1.getText().toString();
-                Boolean che = DB.updateuserdata(nameTXT,usnTXT, pasTXT);
-                if(che==true)
+                Boolean che = DB.updateuserdata(usnTXT, pasTXT);
+                if(che)
                     Toast.makeText(getApplicationContext(), "Entry Updated", Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(getApplicationContext(), "New Entry Not Updated", Toast.LENGTH_SHORT).show();
@@ -71,7 +70,7 @@ public class operation extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Don't Let USN Empty", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    if (checkudeletedata == true)
+                    if (checkudeletedata)
                         Toast.makeText(getApplicationContext(), "Entry Deleted", Toast.LENGTH_SHORT).show();
                     else
                         Toast.makeText(getApplicationContext(), "Entry Not Deleted", Toast.LENGTH_SHORT).show();
